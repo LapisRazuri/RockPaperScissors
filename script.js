@@ -16,16 +16,28 @@ function getComputerChoice () {
     }
 
 function singleroundRockPaperScissors () {
+    const rock = document.createElement("img");
+    rock.src = "pexels-pixabay-161702.jpg";
+
+    const scissors = document.createElement("img");
+    scissors.src = "pexels-karolina-grabowska-4226910.jpg";
+
+    const paper = document.createElement("img");
+    paper.src = "pexels-dulce-espinoza-602900.jpg"
+
+
+    
     let notAcceptable = true;
     while(notAcceptable){
         // playerSelection = prompt("What do you choose? Rock? Scissors? or Paper?").toLowerCase();
-        if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors"){
+        if (playerSelection == rock || playerSelection == paper || playerSelection == scissors){
             notAcceptable = false;
         }
         else {
             alert("That is not an acceptable option! Please choose again!")
         }
     }
+
 
     computerSelection = getComputerChoice();
 
@@ -51,17 +63,30 @@ function singleroundRockPaperScissors () {
 }
 
 function judge(playerPoints, computerPoints) {
-    if (computerPoints > playerPoints) {
+    if (computerPoints >= 5) {
         return "Computer is the winner!";
     }
 
-    else if (computerPoints < playerPoints) { 
+    else if (playerPoints >= 5) { 
         return "Player is the winner!";
     }
 
-    else {
-        return  "No winner!";
-    }
+    // else {
+    //     return  "No winner!";
+    // }
+
+    // Below is the original code
+    // if (computerPoints > playerPoints) {
+    //     return "Computer is the winner!";
+    // }
+
+    // else if (computerPoints < playerPoints) { 
+    //     return "Player is the winner!";
+    // }
+
+    // else {
+    //     return  "No winner!";
+    // }
 }
 
 
@@ -110,21 +135,34 @@ body.appendChild(div);
 
 //Create three buttons for each selection 
 for (let i = 0; i < 3; i++ ) {
+    
+    let rpsimgArray = new Array();
 
-    array = ["scissors", "rock", "paper"]
+    rpsimgArray[0] = new Image();
+    rpsimgArray[0].src = 'pexels-karolina-grabowska-4226910.jpg';
+    rpsimgArray[0].alt = 'scissors';
+
+    rpsimgArray[1] = new Image();
+    rpsimgArray[1].src = 'pexels-pixabay-161702.jpg';
+
+    rpsimgArray[2] = new Image();
+    rpsimgArray[2].src = 'pexels-dulce-espinoza-602900.jpg';
+
+
+
 
     const btn = document.createElement('button');
 
 
-        btn.textContent = array[i];
+        btn.textContent = rpsimgArray[i];
 
-        btn.setAttribute('style', 'color: black; background: coral; width:100px; height:50px; border-color:yellow;' )
+        btn.setAttribute('style', 'color: black; background: coral; width:120px; height:120px; border-color:yellow; font-size: 22px; font-weight: 500;' )
         btn.setAttribute('class', [i])
 
         //Associate buttons with the function
 
         btn.addEventListener('click', () => {
-             playerSelection = array[i];
+             playerSelection = rpsimgArray[i];
              singleroundRockPaperScissors();
         })
 
@@ -132,7 +170,10 @@ for (let i = 0; i < 3; i++ ) {
     }    
     
 //Put spaces in-between the boxes
-body.style.cssText = 'display: flex; justify-content:space-around;'
+body.style.cssText = 'display: flex; justify-content:space-around; align-items:center; width: 100%; height: 100vh;'
+
+
+//Create div for illustration attributes
 
 
     
